@@ -1,0 +1,3 @@
+#We add the files we want to ignore
+MLOps-Python-Project-VirtualEnv/
+__pycache__/
