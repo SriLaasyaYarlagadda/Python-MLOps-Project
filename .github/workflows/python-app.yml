@@ -43,18 +43,12 @@ jobs:
         pytest
     - name: Deploy to Heroku
       env:
-        HEROKU_API_TOKEN: ${{ 1214be88-1d8c-4235-a5a7-6629db7a2c16 }}
-      #  HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
-        HEROKU_APP_NAME: ${{ still-castle-11281-aade64c66972 }}
-  #      HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+        #HEROKU_API_TOKEN: ${{ 1214be88-1d8c-4235-a5a7-6629db7a2c16 }}
+        HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
+        #HEROKU_APP_NAME: ${{ still-castle-11281-aade64c66972 }}
+        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
       if: github.ref == 'refs/heads/master' && job.status == 'success'
       run: |
-<<<<<<< HEAD
         git remote add heroku https://heroku:$HEROKU_API_TOKEN@git.heroku.com/$HEROKU_APP_NAME.git
         git push heroku HEAD:master -f
       # git remote add heroku https://git.heroku.com/$HEROKU_APP_NAME.git
-=======
-        git remote add heroku https://git.heroku.com/$HEROKU_APP_NAME.git
-        git push heroku HEAD:master -f
-#       git remote add heroku https://heroku:$HEROKU_API_TOKEN@git.heroku.com/$HEROKU_APP_NAME.git
->>>>>>> 60167f5887cbdcde83c31a942bf2b4c1d551d077
