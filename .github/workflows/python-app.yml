@@ -42,21 +42,30 @@ jobs:
         export PYTHONPATH=src
         pytest
     - name: Deploy to Heroku
-      env:
-        #HEROKU_API_TOKEN: ${{ 1214be88-1d8c-4235-a5a7-6629db7a2c16 }}
-        HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
-        #HEROKU_APP_NAME: ${{ still-castle-11281-aade64c66972 }}
-        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
       if: github.ref == 'refs/heads/master' && job.status == 'success'
+      env:
+        HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
+        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
       run: |
         git remote add heroku https://git.heroku.com/$HEROKU_APP_NAME.git
         git push heroku HEAD:master -f
-        shell: /usr/bin/bash -e {0}
-        env:
-          pythonLocation: /opt/hostedtoolcache/Python/3.10.13/x64
-          LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.13/x64/lib
-          HEROKU_API_TOKEN: 1214be88-1d8c-4235-a5a7-6629db7a2c16
-          HEROKU_APP_NAME: still-castle-11281-aade64c66972
+
+  #  - name: Deploy to Heroku
+   #   env:
+        #HEROKU_API_TOKEN: ${{ 1214be88-1d8c-4235-a5a7-6629db7a2c16 }}
+    #    HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
+        #HEROKU_APP_NAME: ${{ still-castle-11281-aade64c66972 }}
+     #   HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+      #if: github.ref == 'refs/heads/master' && job.status == 'success'
+      #run: |
+       # git remote add heroku https://git.heroku.com/$HEROKU_APP_NAME.git
+       # git push heroku HEAD:master -f
+       # shell: /usr/bin/bash -e {0}
+       # env:
+        #  pythonLocation: /opt/hostedtoolcache/Python/3.10.13/x64
+         # LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.13/x64/lib
+          #HEROKU_API_TOKEN: 1214be88-1d8c-4235-a5a7-6629db7a2c16
+          #HEROKU_APP_NAME: still-castle-11281-aade64c66972
       # git remote add heroku https://still-castle-11281-aade64c66972.herokuapp.com/
       # git push heroku HEAD:master -f
       # heroku https://git.heroku.com/$HEROKU_APP_NAME.git
